@@ -1,15 +1,10 @@
 # Setup WinRm for Windows via cloudinit
 
-This script is intended to simplify the setup of a WinRM server. Although it is intended to work with VulcanoSec suite, it does no special configuration for VulcanoSec.
-
-The script is tested with Windows 2012 R2.
+This script is intended to simplify the setup of a WinRM server. The script is tested with Windows 2012 R2. This script requires at least PowerShell 4.
 
 ## AWS Cloudinit
 
-Configure your security group for either port 5985 (http) or 5986 (https). We recommend using port 5986 only.
-
-Please use the script `winrm-selfsigned.ps1` for EC2Config:
-
+Please use the following script `winrm-selfsigned.ps1` for EC2Config on AWS:
 
 ```xml
 <powershell>
@@ -19,7 +14,7 @@ Please use the script `winrm-selfsigned.ps1` for EC2Config:
 
 ## OpenStack Userdata
 
-The script can directly be used in combination with OpenStack.
+The script can directly be used in combination with OpenStack. Please ensure that your Windows image has [Cloudinit](https://github.com/stackforge/cloudbase-init) installed.
 
 ```bash
 nova boot \
@@ -30,7 +25,14 @@ nova boot \
 --security-groups default windows
 ```
 
-# References
+## Security Group Configuration
 
- * https://github.com/rdowner/winrm-tools/blob/master/WinRM-Tools/winrm.ps1
+Configure your security group for either port 5985 (http) or 5986 (https). We recommend using port 5986 only.
 
+## Reference
+
+* Richard Downer did a great job with its [WinRM tools](https://github.com/rdowner/winrm-tools/). This project is built on top of Powershell 4 while Richards project supports Powershell 1.
+
+## Author
+
+* Christoph Hartmann <chris@lollyrock.com>
