@@ -39,7 +39,7 @@ $ErrorActionPreference="Stop"
 Function CheckPreconditions
 {
     Write "Check all preconditions"
-    # Ensure we have at least Powershell 3
+    # Ensure we have at least Powershell 4
     If ($PSVersionTable.PSVersion.Major -lt 4)
     {
         Throw "This script required PowerShell version 3 or higher."
